@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="abuAbu">#7E7A7A</color>
+    <color name="merah">#E91313</color>
+    <color name="black">#000000</color>
+    <color name="abuAbuText">#706D6D</color>
+    <color name="abuAbuTime">#ADA9A9</color>
+    <color name="white">#FCFAFA</color>
+</resources>

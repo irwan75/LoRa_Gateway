@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvNama"
+        android:text="Nama"
+        android:textColor="@color/merah"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nomor"
+        android:textSize="12sp"
+        android:textColor="@color/abuAbu"
+        android:id="@+id/tvNomor"/>
+
+</LinearLayout>

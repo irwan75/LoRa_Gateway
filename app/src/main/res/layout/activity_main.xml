@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/abuAbu"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5"
+            android:id="@+id/btnBack"
+            android:background="@color/white"
+            android:src="@drawable/ic_back" />
+
+        <EditText
+            android:id="@+id/etNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="phone"
+            android:layout_weight="1"
+            android:hint="To" />
+
+        <ImageButton
+            android:id="@+id/btnAddNumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5"
+            android:background="@color/white"
+            android:src="@drawable/ic_add_person" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/linNumber"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_above="@id/lineKirim"-->
+<!--        android:id="@+id/lineText"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:background="@color/white"-->
+<!--        android:orientation="vertical">-->
+
+<!--    </LinearLayout>-->
+
+    <include layout="@layout/frame_recent_message"
+        android:layout_below="@+id/linNumber"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/layRecentMessage"
+        android:layout_marginRight="10dp"
+        android:layout_above="@id/lineKirim"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/lineKirim">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etText"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:hint="Text Message"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_gravity="center_vertical"
+            android:layout_height="50dp"
+            android:id="@+id/btnSend"
+            android:layout_weight="6"
+            android:src="@drawable/ic_send"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
