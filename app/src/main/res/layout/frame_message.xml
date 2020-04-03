@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/match_wrap"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        style="@style/match_wrap"
+        android:layout_margin="3dp"
+        android:id="@+id/cvMessage"
+        app:cardCornerRadius="0dp"
+        >
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tanggal_dan_waktu"
+                android:id="@+id/tgl_dan_waktu_message"
+                android:layout_marginTop="3dp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/background_card"
+                android:layout_below="@+id/tgl_dan_waktu_message"
+                android:layout_marginRight="70dp"
+                android:id="@+id/tvMessage"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

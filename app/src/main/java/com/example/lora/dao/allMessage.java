@@ -12,6 +12,7 @@ public class allMessage {
         this.waktu = waktu;
     }
 
+
     public String getNama_nomor() {
         return nama_nomor;
     }

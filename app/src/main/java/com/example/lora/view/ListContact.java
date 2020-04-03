@@ -9,21 +9,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.lora.R;
-import com.example.lora.dao.allMessage;
 import com.example.lora.dao.listContacts;
-import com.example.lora.controller.ProductListAdapter;
 import com.example.lora.recyleradapter.RVAdapterListContact;
-import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
 public class ListContact extends AppCompatActivity {
 

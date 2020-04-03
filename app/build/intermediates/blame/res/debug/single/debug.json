@@ -176,10 +176,6 @@
         "source": "C:\\Users\\irwan\\.gradle\\caches\\transforms-2\\files-2.1\\37ec02f661e3547c5499ecdfd9f3cd1f\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
     {
-        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\layout_frame_recent_message.xml.flat",
-        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\layout\\frame_recent_message.xml"
-    },
-    {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_focused_holo.9.png.flat",
         "source": "C:\\Users\\irwan\\.gradle\\caches\\transforms-2\\files-2.1\\37ec02f661e3547c5499ecdfd9f3cd1f\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_list_focused_holo.9.png"
     },
@@ -246,10 +242,6 @@
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
         "source": "C:\\Users\\irwan\\.gradle\\caches\\transforms-2\\files-2.1\\37ec02f661e3547c5499ecdfd9f3cd1f\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
-    },
-    {
-        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\layout_frame_contact.xml.flat",
-        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\layout\\frame_contact.xml"
     },
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
@@ -330,10 +322,6 @@
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\irwan\\.gradle\\caches\\transforms-2\\files-2.1\\37ec02f661e3547c5499ecdfd9f3cd1f\\appcompat-1.1.0\\res\\drawable-xxhdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_recent_message.xml.flat",
-        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\layout\\list_recent_message.xml"
     },
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
@@ -502,6 +490,10 @@
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\irwan\\.gradle\\caches\\transforms-2\\files-2.1\\37ec02f661e3547c5499ecdfd9f3cd1f\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\layout_frame_message.xml.flat",
+        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\layout\\frame_message.xml"
     },
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
@@ -738,6 +730,10 @@
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\irwan\\.gradle\\caches\\transforms-2\\files-2.1\\37ec02f661e3547c5499ecdfd9f3cd1f\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_card.xml.flat",
+        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\drawable\\background_card.xml"
     },
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_longpressed_holo.9.png.flat",

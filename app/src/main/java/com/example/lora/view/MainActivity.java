@@ -1,29 +1,48 @@
 package com.example.lora.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lora.R;
-import com.example.lora.fragment.FragListRecentMessage;
+import com.example.lora.dao.allMessage;
+import com.example.lora.recyleradapter.RVAdapterMessage;
+import com.example.lora.recyleradapter.RecyclerViewAdapter;
+
+import java.util.ArrayList;
+import com.example.lora.dao.loadMessage;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+    RVAdapterMessage rvAdapterMessage;
+    ArrayList<loadMessage> listLoadMessage;
+
     EditText etNumber;
     ImageButton btnSend;
-    FragListRecentMessage fragRecMess;
     ImageButton btnBack, btnAddNumber;
 
     ProgressDialog progressDialog;
 
     String number;
+
+    String[] tgl_dan_waktu = {"1020892","21u3921","921829","892172","909018","9032121","0318922","92381290","2918021","2891082"};
+    String[] message = {"90knsakjdsjabdabchjbsahcbhcbhasbchjbasjcbashcnjw",
+            "dcascascsacascsjkqncqbnicbwbcwiooadnas","dokcsjhcbhwebcbwejbvhwbevadnsa","dcsajkcnjabchjbwhcbwcewvjhwebviosajd",
+            "cjkdnckwevhbrevbrevbrbevburedioasdna","disancndscbdsbvchjdbsvyubewiuvbeoasjda","dscejwnciwebviuebwvbewivbuiewbvaonda"
+            ,"diocnewivbuwebvybewuyvbweibcewjbcjkwvewsad","dioacnjksncoqwnciwhevweivbiewsada","dsdcwkllcjkwnecpqcniwenvibewhabd"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +64,15 @@ public class MainActivity extends AppCompatActivity {
             number = getIntent().getStringExtra("Nomor").toString().trim();
         }
 
-        FragmentRecentMessage();
+        loadMessage();
+
+        recyclerView = findViewById(R.id.rvMessage);
+
+        rvAdapterMessage = new RVAdapterMessage(listLoadMessage, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(rvAdapterMessage);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +100,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void FragmentRecentMessage(){
-        fragRecMess = new FragListRecentMessage();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction().replace(R.id.layRecentMessage, fragRecMess);
-        ft.commit();
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(MainActivity.this, MainMessage.class));
         finish();
+    }
+
+    void loadMessage(){
+        listLoadMessage = new ArrayList<>();
+        for (int i=0 ; i<tgl_dan_waktu.length;i++){
+            listLoadMessage.add(new loadMessage(tgl_dan_waktu[i], message[i]));
+        }
     }
 
 }

@@ -47,27 +47,16 @@
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@+id/linNumber"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        android:layout_above="@id/lineKirim"-->
-<!--        android:id="@+id/lineText"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:background="@color/white"-->
-<!--        android:orientation="vertical">-->
-
-<!--    </LinearLayout>-->
-
-    <include layout="@layout/frame_recent_message"
-        android:layout_below="@+id/linNumber"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/linNumber"
+        android:layout_above="@+id/lineKirim"
         android:layout_marginLeft="10dp"
-        android:id="@+id/layRecentMessage"
         android:layout_marginRight="10dp"
-        android:layout_above="@id/lineKirim"
+        android:background="@color/white"
+        android:id="@+id/rvMessage"
+        android:padding="10dp"
         />
 
     <LinearLayout

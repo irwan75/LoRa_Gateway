@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="btnContact">Contact</string>
     <string name="edNumber">Phone Number</string>
+    <string name="nama_nomor">Nama/Nomor</string>
+    <string name="tanggal_dan_waktu">Tanggal dan Waktu</string>
 </resources>

@@ -410,6 +410,7 @@ color abc_tint_switch_track
 color abuAbu
 color abuAbuText
 color abuAbuTime
+color abuabuText2
 color accent_material_dark
 color accent_material_light
 color background_floating_material_dark
@@ -692,6 +693,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable background_card
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -805,6 +807,7 @@ id contentPanel
 id custom
 id customPanel
 id cvListContact
+id cvMessage
 id decor_content_parent
 id default_activity_button
 id dialog_button
@@ -831,7 +834,6 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
-id layRecentMessage
 id left
 id linNumber
 id line1
@@ -841,7 +843,6 @@ id listMode
 id listRecylerView
 id listRecylerViewContact
 id list_item
-id lvRecentMessage
 id message
 id middle
 id multiply
@@ -863,6 +864,7 @@ id radio
 id right
 id right_icon
 id right_side
+id rvMessage
 id screen
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -906,6 +908,7 @@ id text
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
+id tgl_dan_waktu_message
 id time
 id title
 id titleDividerNoCustom
@@ -913,16 +916,12 @@ id title_template
 id toolbar_pencarian
 id top
 id topPanel
-id tvMessageRecent
-id tvNama
+id tvMessage
 id tvNamaContact
-id tvNamaRecent
 id tvNamaatauNomor
-id tvNomor
 id tvNomorHandphone
 id tvPesan
 id tvTanggaldanWaktu
-id tvTimeRecent
 id unchecked
 id uniform
 id up
@@ -974,11 +973,9 @@ layout activity_main
 layout activity_main_message
 layout custom_dialog
 layout frame_all_message
-layout frame_contact
 layout frame_list_contact
-layout frame_recent_message
+layout frame_message
 layout list_contact_full
-layout list_recent_message
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
@@ -1024,8 +1021,10 @@ string action_settings
 string app_name
 string btnContact
 string edNumber
+string nama_nomor
 string search_menu_title
 string status_bar_notification_info_overflow
+string tanggal_dan_waktu
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
