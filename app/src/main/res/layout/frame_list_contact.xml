@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/match_wrap"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        style="@style/match_wrap"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="4dp"
+        android:id="@+id/cvContact"
+        >
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tvNamaContact"
+                style="@style/wrap_wrap"
+                android:text="Nama Contact"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tvNomorHandphone"
+                style="@style/wrap_wrap"
+                android:text="Nomor Handphone"
+                android:layout_below="@+id/tvNamaContact"
+                android:textSize="17sp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/cvContact"
+        />
+
+</RelativeLayout>
