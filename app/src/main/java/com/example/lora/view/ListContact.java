@@ -1,12 +1,15 @@
 package com.example.lora.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,48 +19,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.lora.R;
-import com.example.lora.dao.myContacts;
+import com.example.lora.dao.allMessage;
+import com.example.lora.dao.listContacts;
 import com.example.lora.controller.ProductListAdapter;
+import com.example.lora.recyleradapter.RVAdapterListContact;
+import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
 public class ListContact extends AppCompatActivity {
 
-    private ListView lsView;
-    private ProductListAdapter adapter;
-    private List<myContacts> mProductList;
-
-    int i = 0;
+    RecyclerView recyclerView;
+    RVAdapterListContact rvAdapterListContact;
+    ArrayList<listContacts> listAllContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_contact_full);
 
-        lsView = findViewById(R.id.listview);
-        mProductList = new ArrayList<>();
-
         loadContact();
 
-        lsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(ListContact.this, ""+view.getTag(), Toast.LENGTH_SHORT).show();
-//                nmb.setNumber(String.valueOf(view.getTag()));
-                Intent intent = new Intent(ListContact.this, MainActivity.class);
-                intent.putExtra("dataNomor", ""+view.getTag());
-                startActivity(intent);
-                finish();
-            }
-        });
+        recyclerView = findViewById(R.id.listRecylerViewContact);
+        rvAdapterListContact = new RVAdapterListContact(listAllContact, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(rvAdapterListContact);
 
     }
 
-    private void loadContact(){
+    private void loadContact() {
+        listAllContact = new ArrayList<>();
         ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null,null,null,null);
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         String name = "";
         String phoneNumber = "";
 
-        if (cursor.getCount()>0){
+        if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                 name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
@@ -65,23 +62,15 @@ public class ListContact extends AppCompatActivity {
                 Cursor phoneCursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                         ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? ", new String[]{id}, null);
 
-                while (phoneCursor.moveToNext()){
+                while (phoneCursor.moveToNext()) {
                     phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 }
-
-                mProductList.add(new myContacts(i+1, ""+name, ""+phoneNumber));
-                i++;
+                listAllContact.add(new listContacts(name, phoneNumber));
 
                 phoneCursor.close();
             }
-            try {
-                adapter = new ProductListAdapter(getApplicationContext(), mProductList);
-            }catch (Exception ex){
-                Toast.makeText(this, ""+ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
             cursor.close();
         }
-        lsView.setAdapter(adapter);
     }
 
     @Override

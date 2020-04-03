@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    String data_ambil;
+    String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +37,12 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait....");
 
-
-        data_ambil = getIntent().getStringExtra("Nomor");
-
         if (getIntent().getStringExtra("dataNomor")==null) {
-//            etNumber.setHint("Masih Kosong");
-        }else {
+            etNumber.setHint("Masih Kosong");
+        }else{
             etNumber.setText(getIntent().getStringExtra("dataNomor"));
+        }if (getIntent().getStringExtra("Nomor")!=null) {
+            number = getIntent().getStringExtra("Nomor").toString().trim();
         }
 
         FragmentRecentMessage();
@@ -67,10 +66,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListContact.class);
-                progressDialog.show();
                 startActivity(intent);
                 finish();
-//                progressDialog.dismiss();
+//                progressDialog.show();
             }
         });
     }

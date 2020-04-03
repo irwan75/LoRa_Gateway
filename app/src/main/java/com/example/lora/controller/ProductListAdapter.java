@@ -7,16 +7,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.lora.R;
-import com.example.lora.dao.myContacts;
+import com.example.lora.dao.listContacts;
 
 import java.util.List;
 
 public class ProductListAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<myContacts> mProductList;
+    private List<listContacts> mProductList;
 
-    public ProductListAdapter(Context mContext, List<myContacts> mProductList) {
+    public ProductListAdapter(Context mContext, List<listContacts> mProductList) {
         this.mContext = mContext;
         this.mProductList = mProductList;
     }

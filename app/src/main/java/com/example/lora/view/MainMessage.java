@@ -1,7 +1,6 @@
 package com.example.lora.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,14 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.lora.R;
-import com.example.lora.dao.myContacts;
 import com.example.lora.dao.allMessage;
 import java.util.ArrayList;
-import java.util.List;
+
 import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
 public class MainMessage extends AppCompatActivity {

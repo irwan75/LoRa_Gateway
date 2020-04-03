@@ -804,6 +804,7 @@ id content
 id contentPanel
 id custom
 id customPanel
+id cvListContact
 id decor_content_parent
 id default_activity_button
 id dialog_button
@@ -838,8 +839,8 @@ id line3
 id lineKirim
 id listMode
 id listRecylerView
+id listRecylerViewContact
 id list_item
-id listview
 id lvRecentMessage
 id message
 id middle
@@ -914,9 +915,11 @@ id top
 id topPanel
 id tvMessageRecent
 id tvNama
+id tvNamaContact
 id tvNamaRecent
 id tvNamaatauNomor
 id tvNomor
+id tvNomorHandphone
 id tvPesan
 id tvTanggaldanWaktu
 id tvTimeRecent
@@ -972,6 +975,7 @@ layout activity_main_message
 layout custom_dialog
 layout frame_all_message
 layout frame_contact
+layout frame_list_contact
 layout frame_recent_message
 layout list_contact_full
 layout list_recent_message
@@ -1376,6 +1380,8 @@ style Widget_AppCompat_Toolbar
 style Widget_AppCompat_Toolbar_Button_Navigation
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
+style match_wrap
+style wrap_wrap
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth

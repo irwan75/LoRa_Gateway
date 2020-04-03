@@ -1,5 +1,6 @@
 package com.example.lora.recyleradapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, MainActivity.class).putExtra("Nomor", holder.Tvnama_nomor.getText()));
+                ((Activity)context).finish();
             }
         });
     }
@@ -73,10 +75,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Tvwaktu = itemView.findViewById(R.id.tvTanggaldanWaktu);
             cardViewAllMessage = itemView.findViewById(R.id.cardViewAllMessage);
         }
-
-    }
-
-    public void pindah(){
 
     }
 

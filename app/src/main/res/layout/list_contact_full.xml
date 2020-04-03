@@ -6,13 +6,10 @@
 
     <include layout="@layout/toolbar_pencarian"/>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listRecylerViewContact"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listview"
-        android:layout_margin="10dp"
-        android:dividerHeight="2dp"
-        android:divider="#d1d1d1"
-        />
+        android:layout_margin="10dp" />
 
 </LinearLayout>
