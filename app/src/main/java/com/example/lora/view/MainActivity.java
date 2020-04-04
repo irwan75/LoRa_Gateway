@@ -1,6 +1,7 @@
 package com.example.lora.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.style.BackgroundColorSpan;
 import android.view.View;
@@ -38,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     String number;
 
+//    TextView tvMessage;
+    CardView cvMessagee;
+
     String[] tgl_dan_waktu = {"1020892","21u3921","921829","892172","909018","9032121","0318922","92381290","2918021","2891082"};
     String[] message = {"90knsakjdsjabdabchjbsahcbhcbhasbchjbasjcbashcnjw",
             "dcascascsacascsjkqncqbnicbwbcwiooadnas","dokcsjhcbhwebcbwejbvhwbevadnsa","dcsajkcnjabchjbwhcbwcewvjhwebviosajd",
@@ -52,9 +59,19 @@ public class MainActivity extends AppCompatActivity {
         btnSend = findViewById(R.id.btnSend);
         btnBack = findViewById(R.id.btnBack);
         btnAddNumber = findViewById(R.id.btnAddNumber);
+//        tvMessage = findViewById(R.id.tvMessage);
+        cvMessagee = findViewById(R.id.cvMessage);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait....");
+
+//        try {
+//            btnBack.setBackgroundColor(Color.parseColor("#008577"));
+//            Drawable drawable = ContextCompat.getDrawable(getResources(), R.drawable.background_card_color);
+//            tvMessage.setBackground(drawable);
+//        }catch (Exception ex){
+//            Toast.makeText(this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
+//        }
 
         if (getIntent().getStringExtra("dataNomor")==null) {
             etNumber.setHint("Masih Kosong");

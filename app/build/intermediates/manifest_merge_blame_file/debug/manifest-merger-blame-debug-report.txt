@@ -29,29 +29,28 @@
 19-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:11:9-54
 20        android:supportsRtl="true"
 20-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:12:9-35
-21        android:testOnly="true"
-22        android:theme="@style/AppTheme" >
-22-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:13:9-40
-23        <activity android:name="com.example.lora.view.MainActivity" />
-23-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:14:9-64
-23-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:14:19-52
-24        <activity android:name="com.example.lora.view.ListContact" />
-24-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:15:9-54
-24-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:15:19-51
-25        <activity android:name="com.example.lora.view.MainMessage" >
-25-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:16:9-22:20
-25-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:16:19-51
-26            <intent-filter>
-26-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:17:13-21:29
-27                <action android:name="android.intent.action.MAIN" />
-27-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:18:17-69
-27-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:18:25-66
-28
-29                <category android:name="android.intent.category.LAUNCHER" />
-29-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:20:17-77
-29-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:20:27-74
-30            </intent-filter>
-31        </activity>
-32    </application>
-33
-34</manifest>
+21        android:theme="@style/AppTheme" >
+21-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:13:9-40
+22        <activity android:name="com.example.lora.view.MainActivity" />
+22-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:14:9-64
+22-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:14:19-52
+23        <activity android:name="com.example.lora.view.ListContact" />
+23-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:15:9-54
+23-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:15:19-51
+24        <activity android:name="com.example.lora.view.MainMessage" >
+24-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:16:9-22:20
+24-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:16:19-51
+25            <intent-filter>
+25-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:17:13-21:29
+26                <action android:name="android.intent.action.MAIN" />
+26-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:18:17-69
+26-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:18:25-66
+27
+28                <category android:name="android.intent.category.LAUNCHER" />
+28-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:20:17-77
+28-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:20:27-74
+29            </intent-filter>
+30        </activity>
+31    </application>
+32
+33</manifest>

@@ -30,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/background_card"
                 android:layout_below="@+id/tgl_dan_waktu_message"
                 android:layout_marginRight="70dp"
                 android:id="@+id/tvMessage"
