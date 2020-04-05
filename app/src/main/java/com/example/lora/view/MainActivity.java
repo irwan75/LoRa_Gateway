@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -20,7 +21,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lora.Model.TbPengguna;
 import com.example.lora.R;
+import com.example.lora.controller.SQLLiteHelper;
 import com.example.lora.recyleradapter.RVAdapterMessage;
 import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
@@ -28,6 +31,10 @@ import java.util.ArrayList;
 import com.example.lora.dao.*;
 
 public class MainActivity extends AppCompatActivity {
+
+    SQLLiteHelper helper;
+    SQLiteDatabase db;
+    TbPengguna tbp;
 
     RecyclerView recyclerView;
     RVAdapterMessage rvAdapterMessage;
@@ -39,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    String number;
-    etMessage etm;
+    String nomor, nama;
 //    TextView tvMessage;
     CardView cvMessagee;
     EditText etPesan;
@@ -63,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
         cvMessagee = findViewById(R.id.cvMessage);
         etPesan = findViewById(R.id.etText);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please Wait....");
+        helper = new SQLLiteHelper(getApplicationContext());
+        db = helper.getReadableDatabase();
+        tbp = new TbPengguna(db);
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Please Wait....");
 
 //        try {
 //            btnBack.setBackgroundColor(Color.parseColor("#008577"));
@@ -74,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
 //        }
         if (getIntent().getStringExtra("dataNomorListContact")!=null){
-            String nomor = getIntent().getStringExtra("dataNomorListContact").trim();
-            String nama = getIntent().getStringExtra("dataNamaListContact").trim();
+            nomor = getIntent().getStringExtra("dataNomorListContact").trim();
+            nama = getIntent().getStringExtra("dataNamaListContact").trim();
             etNumber.setText(nomor+" ("+nama+")");
         }else if (getIntent().getStringExtra("NomorPilihan")!=null) {
-            String nomorPilihan = getIntent().getStringExtra("NomorPilihan").trim();
-            String namaPilihan = getIntent().getStringExtra("NamaPilihan").trim();
-            etNumber.setText(nomorPilihan+" ("+namaPilihan+")");
+            nomor = getIntent().getStringExtra("NomorPilihan").trim();
+            nama = getIntent().getStringExtra("NamaPilihan").trim();
+            etNumber.setText(nomor+" ("+nama+")");
         }
 
         loadMessage();
@@ -96,8 +105,15 @@ public class MainActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, "terklikji kirim", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, "Terklikji"+etNumber.getText()+" === "+etPesan.getText()+" === sender", Toast.LENGTH_SHORT).show();
+                try {
+                    if (((etPesan.getText().toString().trim()).equals("")) || ((etNumber.getText().toString().trim()).equals(""))) {
+                        Toast.makeText(MainActivity.this, "Pesan atau nomor masih kosong", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(MainActivity.this, "" + tbp.insertData(nama, nomor, etPesan.getText().toString().trim()), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception ex){
+                    Toast.makeText(MainActivity.this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
 

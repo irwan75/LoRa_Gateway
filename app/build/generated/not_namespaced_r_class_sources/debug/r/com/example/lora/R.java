@@ -3818,22 +3818,21 @@ public final class R {
     public static final int title=0x7f0700bb;
     public static final int titleDividerNoCustom=0x7f0700bc;
     public static final int title_template=0x7f0700bd;
-    public static final int toolbar_pencarian=0x7f0700be;
-    public static final int top=0x7f0700bf;
-    public static final int topPanel=0x7f0700c0;
-    public static final int tvMessage=0x7f0700c1;
-    public static final int tvNamaContact=0x7f0700c2;
-    public static final int tvNamaatauNomor=0x7f0700c3;
-    public static final int tvNomorHandphone=0x7f0700c4;
-    public static final int tvPesan=0x7f0700c5;
-    public static final int tvTanggaldanWaktu=0x7f0700c6;
-    public static final int unchecked=0x7f0700c7;
-    public static final int uniform=0x7f0700c8;
-    public static final int up=0x7f0700c9;
-    public static final int useLogo=0x7f0700ca;
-    public static final int withText=0x7f0700cb;
-    public static final int wrap=0x7f0700cc;
-    public static final int wrap_content=0x7f0700cd;
+    public static final int top=0x7f0700be;
+    public static final int topPanel=0x7f0700bf;
+    public static final int tvMessage=0x7f0700c0;
+    public static final int tvNamaContact=0x7f0700c1;
+    public static final int tvNamaatauNomor=0x7f0700c2;
+    public static final int tvNomorHandphone=0x7f0700c3;
+    public static final int tvPesan=0x7f0700c4;
+    public static final int tvTanggaldanWaktu=0x7f0700c5;
+    public static final int unchecked=0x7f0700c6;
+    public static final int uniform=0x7f0700c7;
+    public static final int up=0x7f0700c8;
+    public static final int useLogo=0x7f0700c9;
+    public static final int withText=0x7f0700ca;
+    public static final int wrap=0x7f0700cb;
+    public static final int wrap_content=0x7f0700cc;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;
@@ -3897,7 +3896,6 @@ public final class R {
     public static final int select_dialog_multichoice_material=0x7f0a002a;
     public static final int select_dialog_singlechoice_material=0x7f0a002b;
     public static final int support_simple_spinner_dropdown_item=0x7f0a002c;
-    public static final int toolbar_pencarian=0x7f0a002d;
   }
   public static final class menu {
     public static final int menu_main=0x7f0b0000;
