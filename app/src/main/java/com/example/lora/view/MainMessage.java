@@ -23,6 +23,7 @@ public class MainMessage extends AppCompatActivity {
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<allMessage> listAllMessage;
 
+    String[] nama = {"Ardi","Dian","Andi","Irwan","Lia","Icha","Nita","Andri","Dandi","Nani"};
     String[] number = {"1020892","21u3921","921829","892172","909018","9032121","0318922","92381290","2918021","2891082"};
     String[] chat = {"90knsakjcnjw","diooadnas","dokadnsa","diosajd","dioasdna","dioasjda","dsaonda","diosad","diosada","dsdhabd"};
     String[] date_time = {"dsajdka","djsadw","dionqo","diowej","oew0239","903dfjkwef","dowqdq","odiqjd","powqdj","9201809"};
@@ -56,7 +57,7 @@ public class MainMessage extends AppCompatActivity {
     void loadMessage(){
         listAllMessage = new ArrayList<>();
         for (int i=0 ; i<number.length;i++){
-            listAllMessage.add(new allMessage(number[i], chat[i], date_time[i]));
+            listAllMessage.add(new allMessage(nama[i], number[i], chat[i], date_time[i]));
         }
     }
 }

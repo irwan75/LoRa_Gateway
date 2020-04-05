@@ -21,12 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lora.R;
-import com.example.lora.dao.allMessage;
 import com.example.lora.recyleradapter.RVAdapterMessage;
 import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
 import java.util.ArrayList;
-import com.example.lora.dao.loadMessage;
+import com.example.lora.dao.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     String number;
-
+    etMessage etm;
 //    TextView tvMessage;
     CardView cvMessagee;
+    EditText etPesan;
 
     String[] tgl_dan_waktu = {"1020892","21u3921","921829","892172","909018","9032121","0318922","92381290","2918021","2891082"};
     String[] message = {"90knsakjdsjabdabchjbsahcbhcbhasbchjbasjcbashcnjw",
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         btnAddNumber = findViewById(R.id.btnAddNumber);
 //        tvMessage = findViewById(R.id.tvMessage);
         cvMessagee = findViewById(R.id.cvMessage);
+        etPesan = findViewById(R.id.etText);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait....");
@@ -72,13 +73,14 @@ public class MainActivity extends AppCompatActivity {
 //        }catch (Exception ex){
 //            Toast.makeText(this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
 //        }
-
-        if (getIntent().getStringExtra("dataNomor")==null) {
-            etNumber.setHint("Masih Kosong");
-        }else{
-            etNumber.setText(getIntent().getStringExtra("dataNomor"));
-        }if (getIntent().getStringExtra("Nomor")!=null) {
-            number = getIntent().getStringExtra("Nomor").toString().trim();
+        if (getIntent().getStringExtra("dataNomorListContact")!=null){
+            String nomor = getIntent().getStringExtra("dataNomorListContact").trim();
+            String nama = getIntent().getStringExtra("dataNamaListContact").trim();
+            etNumber.setText(nomor+" ("+nama+")");
+        }else if (getIntent().getStringExtra("NomorPilihan")!=null) {
+            String nomorPilihan = getIntent().getStringExtra("NomorPilihan").trim();
+            String namaPilihan = getIntent().getStringExtra("NamaPilihan").trim();
+            etNumber.setText(nomorPilihan+" ("+namaPilihan+")");
         }
 
         loadMessage();
@@ -94,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "terklikji kirim", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "terklikji kirim", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Terklikji"+etNumber.getText()+" === "+etPesan.getText()+" === sender", Toast.LENGTH_SHORT).show();
             }
         });
 

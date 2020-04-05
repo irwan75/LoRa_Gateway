@@ -17,8 +17,8 @@ import com.example.lora.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.lora.dao.*;
 
-import com.example.lora.dao.listContacts;
 import com.example.lora.view.MainActivity;
 
 public class RVAdapterListContact extends RecyclerView.Adapter<RVAdapterListContact.ViewHolder> implements Filterable {
@@ -26,6 +26,7 @@ public class RVAdapterListContact extends RecyclerView.Adapter<RVAdapterListCont
     private ArrayList<listContacts> dataListContact;
     private ArrayList<listContacts> dataListContactSearch;
     private Context context;
+//    private etMessage etm = new etMessage();
 
     public RVAdapterListContact(ArrayList<listContacts> dataListContact, Context context) {
         this.dataListContact = dataListContact;
@@ -47,7 +48,10 @@ public class RVAdapterListContact extends RecyclerView.Adapter<RVAdapterListCont
         holder.CVListContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, MainActivity.class).putExtra("dataNomor", holder.tvNomor.getText()));
+                context.startActivity(new Intent(context, MainActivity.class).putExtra("dataNomorListContact", holder.tvNomor.getText())
+                .putExtra("dataNamaListContact", holder.tvNama.getText()));
+//                etm.setNomor((String) holder.tvNomor.getText());
+//                context.startActivity(new Intent(context, MainActivity.class));
                 ((Activity)context).finish();
             }
         });

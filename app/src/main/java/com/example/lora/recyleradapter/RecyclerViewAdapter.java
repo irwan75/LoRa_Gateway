@@ -37,7 +37,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
-        holder.Tvnama_nomor.setText(dataList.get(position).getNama_nomor());
+        final String nomor = dataList.get(position).getNomor();
+        final String nama = dataList.get(position).getNama();
+        holder.Tvnama_nomor.setText(nomor);
         holder.Tvpesan.setText(dataList.get(position).getPesan());
         holder.Tvwaktu.setText(dataList.get(position).getWaktu());
 
@@ -52,7 +54,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.cardViewAllMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, MainActivity.class).putExtra("Nomor", holder.Tvnama_nomor.getText()));
+                context.startActivity(new Intent(context, MainActivity.class).putExtra("NomorPilihan", nomor)
+                .putExtra("NamaPilihan", nama));
                 ((Activity)context).finish();
             }
         });
