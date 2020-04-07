@@ -30,7 +30,7 @@ import com.example.lora.recyleradapter.RecyclerViewAdapter;
 import java.util.ArrayList;
 import com.example.lora.dao.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     SQLLiteHelper helper;
     SQLiteDatabase db;
@@ -46,16 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    String nomor, nama;
+    String nomor = null;
+    String nama = null;
 //    TextView tvMessage;
     CardView cvMessagee;
     EditText etPesan;
-
-    String[] tgl_dan_waktu = {"1020892","21u3921","921829","892172","909018","9032121","0318922","92381290","2918021","2891082"};
-    String[] message = {"90knsakjdsjabdabchjbsahcbhcbhasbchjbasjcbashcnjw",
-            "dcascascsacascsjkqncqbnicbwbcwiooadnas","dokcsjhcbhwebcbwejbvhwbevadnsa","dcsajkcnjabchjbwhcbwcewvjhwebviosajd",
-            "cjkdnckwevhbrevbrevbrbevburedioasdna","disancndscbdsbvchjdbsvyubewiuvbeoasjda","dscejwnciwebviuebwvbewivbuiewbvaonda"
-            ,"diocnewivbuwebvybewuyvbweibcewjbcjkwvewsad","dioacnjksncoqwnciwhevweivbiewsada","dsdcwkllcjkwnecpqcniwenvibewhabd"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,23 +60,14 @@ public class MainActivity extends AppCompatActivity {
         btnSend = findViewById(R.id.btnSend);
         btnBack = findViewById(R.id.btnBack);
         btnAddNumber = findViewById(R.id.btnAddNumber);
-//        tvMessage = findViewById(R.id.tvMessage);
         cvMessagee = findViewById(R.id.cvMessage);
         etPesan = findViewById(R.id.etText);
+        recyclerView = findViewById(R.id.rvMessage);
 
         helper = new SQLLiteHelper(getApplicationContext());
         db = helper.getReadableDatabase();
         tbp = new TbPengguna(db);
-//        progressDialog = new ProgressDialog(this);
-//        progressDialog.setMessage("Please Wait....");
 
-//        try {
-//            btnBack.setBackgroundColor(Color.parseColor("#008577"));
-//            Drawable drawable = ContextCompat.getDrawable(getResources(), R.drawable.background_card_color);
-//            tvMessage.setBackground(drawable);
-//        }catch (Exception ex){
-//            Toast.makeText(this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
-//        }
         if (getIntent().getStringExtra("dataNomorListContact")!=null){
             nomor = getIntent().getStringExtra("dataNomorListContact").trim();
             nama = getIntent().getStringExtra("dataNamaListContact").trim();
@@ -92,48 +78,15 @@ public class MainActivity extends AppCompatActivity {
             etNumber.setText(nomor+" ("+nama+")");
         }
 
-        loadMessage();
-
-        recyclerView = findViewById(R.id.rvMessage);
-
-        rvAdapterMessage = new RVAdapterMessage(listLoadMessage, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(rvAdapterMessage);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    if (((etPesan.getText().toString().trim()).equals("")) || ((etNumber.getText().toString().trim()).equals(""))) {
-                        Toast.makeText(MainActivity.this, "Pesan atau nomor masih kosong", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(MainActivity.this, "" + tbp.insertData(nama, nomor, etPesan.getText().toString().trim()), Toast.LENGTH_SHORT).show();
-                    }
-                }catch (Exception ex){
-                    Toast.makeText(MainActivity.this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        loadMessage(nomor);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainMessage.class));
-                finish();
-            }
-        });
-
-        btnAddNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListContact.class);
-                startActivity(intent);
-                finish();
-//                progressDialog.show();
-            }
-        });
+        btnSend.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
+        btnAddNumber.setOnClickListener(this);
     }
 
     @Override
@@ -143,11 +96,49 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    void loadMessage(){
-        listLoadMessage = new ArrayList<>();
-        for (int i=0 ; i<tgl_dan_waktu.length;i++){
-            listLoadMessage.add(new loadMessage(tgl_dan_waktu[i], message[i]));
-        }
+    void loadMessage(String nomor){
+        rvAdapterMessage = new RVAdapterMessage(tbp.select(nomor),this);
+        recyclerView.setAdapter(rvAdapterMessage);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnSend :
+                try {
+                    if (((etPesan.getText().toString().trim()).equals("")) || ((etNumber.getText().toString().trim()).equals(""))) {
+                        Toast.makeText(MainActivity.this, "Pesan atau nomor masih kosong", Toast.LENGTH_SHORT).show();
+                    }else if (nama == null){
+                        Toast.makeText(MainActivity.this, ""+tbp.insertDataTanpaNama(nomor, etPesan.getText().toString().trim()), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(MainActivity.this, "" + tbp.insertData(nama, nomor, etPesan.getText().toString().trim()), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception ex){
+                    Toast.makeText(MainActivity.this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                loadMessage(nomor);
+                etPesan.setText("");
+            break;
+            case R.id.btnBack :
+                startActivity(new Intent(MainActivity.this, MainMessage.class));
+                finish();
+                break;
+            case R.id.btnAddNumber :
+                Intent intent = new Intent(MainActivity.this, ListContact.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+    }
 }
+
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Please Wait....");
+
+//        try {
+//            btnBack.setBackgroundColor(Color.parseColor("#008577"));
+//            Drawable drawable = ContextCompat.getDrawable(getResources(), R.drawable.background_card_color);
+//            tvMessage.setBackground(drawable);
+//        }catch (Exception ex){
+//            Toast.makeText(this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
+//        }

@@ -2,7 +2,7 @@ package com.example.lora.dao;
 
 public class loadMessage {
 
-    String tglwaktu, message;
+    private String tglwaktu, message;
 
     public loadMessage(String tglwaktu, String message) {
         this.tglwaktu = tglwaktu;

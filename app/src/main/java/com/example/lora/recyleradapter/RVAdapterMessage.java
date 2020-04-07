@@ -34,8 +34,15 @@ public class RVAdapterMessage extends RecyclerView.Adapter<RVAdapterMessage.View
 
     @Override
     public void onBindViewHolder(RVAdapterMessage.ViewHolder holder, int position) {
-        holder.tvTgldanNama.setText(dataListMessage.get(position).getTglwaktu());
-        holder.tvMessage.setText(dataListMessage.get(position).getMessage());
+//        holder.tvTgldanNama.setText(dataListMessage.get(position).getTglwaktu());
+//        holder.tvMessage.setText(dataListMessage.get(position).getMessage());
+        loadMessage lMessage = dataListMessage.get(position);
+        String tgl_dan_waktu = lMessage.getTglwaktu();
+        String pesan = lMessage.getMessage();
+
+        holder.tvTgldanNama.setText(tgl_dan_waktu);
+        holder.tvMessage.setText(pesan);
+
     }
 
     @Override

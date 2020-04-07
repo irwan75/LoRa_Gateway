@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 
 public class SQLLiteHelper extends SQLiteOpenHelper {
 
-    private static final String dbName = "loraProject";
-    private static final int dbVersion = 3;
+    private static final String dbName = "chatting";
+    private static final int dbVersion = 1;
 
     public SQLLiteHelper(Context context) {
         super(context, dbName, null, dbVersion);
@@ -18,13 +18,17 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE pengguna(nama VARCHAR(50), no_hp bigint PRIMARY KEY)");
-        db.execSQL("CREATE TABLE message(id INT PRIMARY KEY NOT NULL, no_hp BIGINT, pesan TEXT, " +
-                "tanggal DATE, waktu TIME, rule VARCHAR(10), FOREIGN KEY(no_hp) REFERENCES pengguna(no_hp)" +
-                " ON DELETE CASCADE ON UPDATE CASCADE)");
+        String tbPengguna = "CREATE TABLE pengguna(nama VARCHAR(50), no_hp BIGINT PRIMARY KEY);";
+        String tbMessage = "create TABLE message(id INTEGER PRIMARY KEY, no_hp bigint, pesan text, tanggal date, " +
+                "waktu time, rule varchar(10), FOREIGN KEY(no_hp) REFERENCES pengguna(no_hp) " +
+                "ON DELETE CASCADE ON UPDATE CASCADE);";
+        db.execSQL(tbPengguna);
+        db.execSQL(tbMessage);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+dbName);
+        onCreate(db);
     }
 }

@@ -5,13 +5,13 @@ public class allMessage {
     String nama;
     String nomor;
     String pesan;
-    String waktu;
+    String tanggal;
 
-    public allMessage(String nama, String nomor, String pesan, String waktu) {
+    public allMessage(String nama, String nomor, String pesan, String tanggal) {
         this.nama = nama;
         this.nomor = nomor;
         this.pesan = pesan;
-        this.waktu = waktu;
+        this.tanggal = tanggal;
     }
 
     public String getNama() {
@@ -38,11 +38,11 @@ public class allMessage {
         this.pesan = pesan;
     }
 
-    public String getWaktu() {
-        return waktu;
+    public String getTanggal() {
+        return tanggal;
     }
 
-    public void setWaktu(String waktu) {
-        this.waktu = waktu;
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
 }

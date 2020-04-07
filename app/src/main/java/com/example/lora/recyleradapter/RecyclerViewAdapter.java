@@ -37,11 +37,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
-        final String nomor = dataList.get(position).getNomor();
-        final String nama = dataList.get(position).getNama();
-        holder.Tvnama_nomor.setText(nomor);
-        holder.Tvpesan.setText(dataList.get(position).getPesan());
-        holder.Tvwaktu.setText(dataList.get(position).getWaktu());
+//        holder.Tvnama_nomor.setText(nomor);
+//        holder.Tvpesan.setText(dataList.get(position).getPesan());
+//        holder.Tvwaktu.setText(dataList.get(position).getTanggal());
+
+        allMessage listPesan = dataList.get(position);
+
+        final String nama = listPesan.getNama();
+        final String nomor = listPesan.getNomor();
+        final String pesan = listPesan.getPesan();
+        final String tanggal = listPesan.getTanggal();
+
+        holder.Tvnama_nomor.setText(nomor+" ("+nama+")");
+        holder.Tvpesan.setText(pesan);
+        holder.Tvwaktu.setText(tanggal);
 
         //jika text viewnya yang di klik
         /*holder.Tvwaktu.setOnClickListener(new View.OnClickListener() {

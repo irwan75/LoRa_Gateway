@@ -2,7 +2,7 @@ package com.example.lora.Model;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
+import com.example.lora.dao.*;
 import java.util.ArrayList;
 
 public class TbPengguna {
@@ -13,12 +13,25 @@ public class TbPengguna {
         this.db = db;
     }
 
-    public String insertData(String nama, String no_hp, String pesan){
-        String query1 = "INSERT OR REPLACE INTO pengguna(nama, no_hp) VALUES('" + nama + "'," + no_hp + ");";
-        String query2 = "INSERT OR REPLACE INTO message(no_hp, pesan, tanggal, waktu, rule) VALUES(" + no_hp + ",'" + pesan + "', date('now') , time('now') , 'sender');";
-        db.execSQL(query1);
+    public String insertData(String nama, String nomor, String pesan){
+        String query1 = "INSERT INTO pengguna VALUES ('"+ nama +"',"+nomor+")";
+        String query2 = "INSERT INTO message(no_hp, pesan, tanggal, waktu, rule) VALUES ("+nomor+",'"+pesan+"'," +
+                "DATE('now'), TIME('now'), 'sender')";
+        String query = "select pesan, tanggal, waktu from message where no_hp = "+nomor+"";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToNext()){
+        }else {
+            db.execSQL(query1);
+        }
         db.execSQL(query2);
-        return "...Sukess Terkirim...";
+        return "Sukses Terinput";
+    }
+
+    public String insertDataTanpaNama(String nomor, String pesan){
+        String query2 = "INSERT INTO message(no_hp, pesan, tanggal, waktu, rule) VALUES ("+nomor+",'"+pesan+"'," +
+                "DATE('now'), TIME('now'), 'sender')";
+        db.execSQL(query2);
+        return "Sukses Terinput";
     }
 
     public void deleteData(){
@@ -31,21 +44,46 @@ public class TbPengguna {
 //        db.execSQL(query);
     }
 
-//    public ArrayList<String> select() {
-//        ArrayList<String> noname = new ArrayList<>();
-//
-//        String query = "select *from pengguna";
-//        Cursor cursor = db.rawQuery(query, null);;
-//
-//        while (cursor.moveToNext()) {
-//            String nama = cursor.getString(1);
-////            String nomor = cursor.getString(2);
-//            noname.add(nama);
-//        }
-//
-//        cursor.close();
-//
-//        return noname;
-//    }
+    public ArrayList<allMessage> selectLastMessage(){
+        ArrayList<allMessage> listMessage = new ArrayList<>();
+
+        String query = "select pengguna.nama, message.no_hp, message.pesan, message.tanggal\n" +
+                "from pengguna, message\n" +
+                "where message.id = (SELECT max(id) FROM message WHERE pengguna.no_hp = message.no_hp);";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToNext()){
+            do {
+                allMessage allPesan = new allMessage(
+                        ""+cursor.getString(cursor.getColumnIndex("pengguna.nama")),
+                        ""+cursor.getString(cursor.getColumnIndex("message.no_hp")),
+                        ""+cursor.getString(cursor.getColumnIndex("message.pesan")),
+                        ""+cursor.getString(cursor.getColumnIndex("message.tanggal"))
+                );
+                listMessage.add(allPesan);
+            }while (cursor.moveToNext());
+        }
+
+        return listMessage;
+    }
+
+    public ArrayList<loadMessage> select(String kondisi){
+        ArrayList<loadMessage> loadPesan = new ArrayList<>();
+
+        String query = "select pesan, tanggal, waktu from message where no_hp = "+kondisi+"";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToNext()){
+            do {
+                loadMessage lMessage = new loadMessage(
+                        ""+cursor.getString(cursor.getColumnIndex("tanggal"))+
+                                " "+cursor.getString(cursor.getColumnIndex("waktu")),
+                        ""+cursor.getString(cursor.getColumnIndex("pesan"))
+                );
+                loadPesan.add(lMessage);
+            }while (cursor.moveToNext());
+        }
+        return loadPesan;
+    }
 
 }
