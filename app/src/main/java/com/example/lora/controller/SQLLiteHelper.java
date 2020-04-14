@@ -19,8 +19,8 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String tbPengguna = "CREATE TABLE pengguna(nama VARCHAR(50), no_hp BIGINT PRIMARY KEY);";
-        String tbMessage = "create TABLE message(id INTEGER PRIMARY KEY, no_hp bigint, pesan text, tanggal date, " +
-                "waktu time, rule varchar(10), FOREIGN KEY(no_hp) REFERENCES pengguna(no_hp) " +
+        String tbMessage = "create TABLE message(id INTEGER PRIMARY KEY, no_hp BIGINT, pesan TEXT, tanggal DATE, " +
+                "waktu TIME, rule VARCHAR(10), FOREIGN KEY(no_hp) REFERENCES pengguna(no_hp) " +
                 "ON DELETE CASCADE ON UPDATE CASCADE);";
         db.execSQL(tbPengguna);
         db.execSQL(tbMessage);

@@ -14,7 +14,9 @@
         <RelativeLayout
             style="@style/match_wrap"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:id="@+id/rlLayout"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,10 +33,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_below="@+id/tgl_dan_waktu_message"
-                android:layout_marginRight="70dp"
                 android:id="@+id/tvMessage"
                 android:padding="7dp"
                 android:textColor="@color/black"
+                android:background="@drawable/background_card"
                 />
 
         </RelativeLayout>

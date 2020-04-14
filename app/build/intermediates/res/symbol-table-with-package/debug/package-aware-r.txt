@@ -865,6 +865,7 @@ id radio
 id right
 id right_icon
 id right_side
+id rlLayout
 id rvMessage
 id screen
 id scrollIndicatorDown

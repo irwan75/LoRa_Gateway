@@ -50,8 +50,6 @@ public class RVAdapterListContact extends RecyclerView.Adapter<RVAdapterListCont
             public void onClick(View v) {
                 context.startActivity(new Intent(context, MainActivity.class).putExtra("dataNomorListContact", holder.tvNomor.getText())
                 .putExtra("dataNamaListContact", holder.tvNama.getText()));
-//                etm.setNomor((String) holder.tvNomor.getText());
-//                context.startActivity(new Intent(context, MainActivity.class));
                 ((Activity)context).finish();
             }
         });

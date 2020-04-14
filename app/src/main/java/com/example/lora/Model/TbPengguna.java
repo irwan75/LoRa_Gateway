@@ -17,6 +17,8 @@ public class TbPengguna {
         String query1 = "INSERT INTO pengguna VALUES ('"+ nama +"',"+nomor+")";
         String query2 = "INSERT INTO message(no_hp, pesan, tanggal, waktu, rule) VALUES ("+nomor+",'"+pesan+"'," +
                 "DATE('now'), TIME('now'), 'sender')";
+        String query3 = "INSERT INTO message(no_hp, pesan, tanggal, waktu, rule) VALUES ("+nomor+",'"+pesan+"'," +
+                "DATE('now'), TIME('now'), 'receiver')";
         String query = "select pesan, tanggal, waktu from message where no_hp = "+nomor+"";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()){
@@ -24,6 +26,7 @@ public class TbPengguna {
             db.execSQL(query1);
         }
         db.execSQL(query2);
+        db.execSQL(query3);
         return "Sukses Terinput";
     }
 
@@ -70,7 +73,7 @@ public class TbPengguna {
     public ArrayList<loadMessage> select(String kondisi){
         ArrayList<loadMessage> loadPesan = new ArrayList<>();
 
-        String query = "select pesan, tanggal, waktu from message where no_hp = "+kondisi+"";
+        String query = "select pesan, tanggal, waktu, rule from message where no_hp = "+kondisi+"";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToNext()){
@@ -78,7 +81,8 @@ public class TbPengguna {
                 loadMessage lMessage = new loadMessage(
                         ""+cursor.getString(cursor.getColumnIndex("tanggal"))+
                                 " "+cursor.getString(cursor.getColumnIndex("waktu")),
-                        ""+cursor.getString(cursor.getColumnIndex("pesan"))
+                        ""+cursor.getString(cursor.getColumnIndex("pesan")),
+                        ""+cursor.getString(cursor.getColumnIndex("rule"))
                 );
                 loadPesan.add(lMessage);
             }while (cursor.moveToNext());
