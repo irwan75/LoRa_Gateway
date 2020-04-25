@@ -27,7 +27,7 @@ public class TbPengguna {
         }
         db.execSQL(query2);
         db.execSQL(query3);
-        return "Sukses Terinput";
+        return "Sukses Terkirim";
     }
 
     public String insertDataTanpaNama(String nomor, String pesan){

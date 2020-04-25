@@ -22,8 +22,12 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         String tbMessage = "create TABLE message(id INTEGER PRIMARY KEY, no_hp BIGINT, pesan TEXT, tanggal DATE, " +
                 "waktu TIME, rule VARCHAR(10), FOREIGN KEY(no_hp) REFERENCES pengguna(no_hp) " +
                 "ON DELETE CASCADE ON UPDATE CASCADE);";
+        String tbDevice = "CREATE TABLE deviceAddress(kode INT PRIMARY KEY, address VARCHAR(25));";
+        String query = "INSERT INTO deviceAddress VALUES(75, 'standar');";
         db.execSQL(tbPengguna);
         db.execSQL(tbMessage);
+        db.execSQL(tbDevice);
+        db.execSQL(query);
     }
 
     @Override

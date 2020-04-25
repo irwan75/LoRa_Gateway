@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lora.Model.TbPengguna;
+import com.example.lora.Model.*;
 import com.example.lora.R;
 import com.example.lora.controller.SQLLiteHelper;
 import com.example.lora.dao.*;
@@ -37,20 +37,14 @@ public class MainMessage extends AppCompatActivity implements View.OnClickListen
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
 
-    private String deviceAddress;
-
     TbPengguna tbp;
+    deviceAddressBluetooth dab;
     TextView tvStatusPairing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_message);
-
-        if (getIntent().getExtras()!= null){
-            deviceAddress = getIntent().getStringExtra("device");
-            Log.i("Androssss",deviceAddress);
-        }
 
         getSupportActionBar().hide();
 
@@ -66,6 +60,13 @@ public class MainMessage extends AppCompatActivity implements View.OnClickListen
         helper = new SQLLiteHelper(this);
         db = helper.getReadableDatabase();
         tbp = new TbPengguna(db);
+        dab = new deviceAddressBluetooth(db);
+
+        if (dab.select().equals("standar")){
+            tvStatusPairing.setText("Not Connected");
+        }else {
+            tvStatusPairing.setText("Connected");
+        }
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -106,8 +107,8 @@ public class MainMessage extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnTambahPesan:
-                startActivity(new Intent(MainMessage.this, MainActivity.class));
-                finish();
+                    startActivity(new Intent(MainMessage.this, MainActivity.class));
+                    finish();
                 break;
             case R.id.btnPairing:
 //                Toast.makeText(this, "Menuju ke activity pairing", Toast.LENGTH_SHORT).show();

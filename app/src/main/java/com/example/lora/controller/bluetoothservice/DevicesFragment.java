@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,9 @@ import androidx.fragment.app.ListFragment;
 import java.util.ArrayList;
 import java.util.Collections;
 import com.example.lora.R;
+import com.example.lora.controller.SQLLiteHelper;
 import com.example.lora.view.MainMessage;
-import com.example.lora.dao.*;
+import com.example.lora.Model.*;
 
 public class DevicesFragment extends ListFragment {
 
@@ -26,9 +28,18 @@ public class DevicesFragment extends ListFragment {
     private ArrayList<BluetoothDevice> listItems = new ArrayList<>();
     private ArrayAdapter<BluetoothDevice> listAdapter;
 
+    deviceAddressBluetooth dab;
+    SQLiteDatabase db;
+    SQLLiteHelper helper;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        helper = new SQLLiteHelper(getContext());
+        db = helper.getReadableDatabase();
+        dab = new deviceAddressBluetooth(db);
+
         setHasOptionsMenu(true);
         if(getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH))
             bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -84,9 +95,8 @@ public class DevicesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         BluetoothDevice device = listItems.get(position-1);
-        Intent intent = new Intent(getActivity(), MainMessage.class);
-        intent.putExtra("device", device.getAddress());
-        startActivity(intent);
+        dab.updateData(device.getAddress());
+        startActivity(new Intent(getActivity(), MainMessage.class));
         getActivity().finish();
     }
 

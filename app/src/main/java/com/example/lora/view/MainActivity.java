@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -17,7 +19,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,11 +30,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lora.Model.TbPengguna;
+import com.example.lora.Model.*;
 import com.example.lora.R;
 import com.example.lora.controller.SQLLiteHelper;
-import com.example.lora.controller.bluetoothservice.SerialListener;
-import com.example.lora.controller.bluetoothservice.SerialService;
+import com.example.lora.controller.bluetoothservice.*;
 import com.example.lora.recyleradapter.RVAdapterMessage;
 import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
@@ -38,9 +42,12 @@ import com.example.lora.dao.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ServiceConnection, SerialListener {
 
+    private enum Connected { False, Pending, True }
+
     SQLLiteHelper helper;
     SQLiteDatabase db;
     TbPengguna tbp;
+    deviceAddressBluetooth dab;
 
     RecyclerView recyclerView;
     RVAdapterMessage rvAdapterMessage;
@@ -50,11 +57,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton btnSend;
     ImageButton btnBack, btnAddNumber;
 
-    ProgressDialog progressDialog;
+    public SerialSocket socket;
+    public SerialService service;
+    public String newline = "\r\n";
 
-    private SerialService service;
+    private boolean initialStart = true;
 
-    private String deviceAddress;
+    private Connected connected = Connected.False;
 
     String nomor = null;
     String nama = null;
@@ -62,15 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CardView cvMessagee;
     EditText etPesan;
 
+    String deviceAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (getIntent().getExtras()!= null){
-            deviceAddress = getIntent().getStringExtra("device");
-            Log.i("Androidddd",deviceAddress);
-        }
 
         etNumber = findViewById(R.id.etNumber);
         btnSend = findViewById(R.id.btnSend);
@@ -83,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         helper = new SQLLiteHelper(getApplicationContext());
         db = helper.getReadableDatabase();
         tbp = new TbPengguna(db);
+        dab = new deviceAddressBluetooth(db);
+
+        deviceAddress = dab.select().toString().trim();
 
         if (getIntent().getStringExtra("dataNomorListContact")!=null){
             nomor = getIntent().getStringExtra("dataNomorListContact").trim();
@@ -128,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, ""+tbp.insertDataTanpaNama(nomor, etPesan.getText().toString().trim()), Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(MainActivity.this, "" + tbp.insertData(nama, nomor, etPesan.getText().toString().trim()), Toast.LENGTH_SHORT).show();
+                        send(etPesan.getText().toString().trim());
                     }
                 }catch (Exception ex){
                     Toast.makeText(MainActivity.this, ""+ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -149,7 +159,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder binder) {
+        service = ((SerialService.SerialBinder) binder).getService();
+//        if(initialStart && isResumed()) {
+//            initialStart = false;
+            MainActivity.this.runOnUiThread(this::connect);
+//        }
+    }
 
+    //Bluetooth Send Service
+
+    private void connect() {
+        try {
+            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
+            String deviceName = device.getName() != null ? device.getName() : device.getAddress();
+//            status("connecting...");
+            connected = Connected.Pending;
+            socket = new SerialSocket();
+            service.connect(this, "Connected to " + deviceName);
+            socket.connect(getApplicationContext(), service, device);
+        } catch (Exception e) {
+            onSerialConnectError(e);
+        }
+    }
+
+    private void disconnect() {
+        connected = Connected.False;
+        service.disconnect();
+        socket.disconnect();
+        socket = null;
+    }
+
+    private void send(String str) {
+        if(connected != Connected.True) {
+            Toast.makeText(getApplicationContext(), "not connected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+//            SpannableStringBuilder spn = new SpannableStringBuilder(str+'\n');
+//            spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorSendText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            receiveText.append(spn);
+            byte[] data = (str + newline).getBytes();
+            socket.write(data);
+            socket.write(data);
+        } catch (Exception e) {
+            onSerialIoError(e);
+        }
     }
 
     @Override
@@ -159,12 +214,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onSerialConnect() {
-
+//        status("connected");
+        connected = Connected.True;
     }
 
     @Override
     public void onSerialConnectError(Exception e) {
-
+//        status("connection failed: " + e.getMessage());
+        disconnect();
     }
 
     @Override
@@ -174,7 +231,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onSerialIoError(Exception e) {
-
+//        status("connection lost: " + e.getMessage());
+        disconnect();
     }
 }
 
