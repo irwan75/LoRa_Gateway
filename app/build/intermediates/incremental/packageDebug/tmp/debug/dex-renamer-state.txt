@@ -1,7 +1,4 @@
-#Sat Apr 11 19:01:47 SGT 2020
-base.0=C\:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
-path.1=classes.dex
-renamed.1=classes2.dex
+#Sat Apr 25 21:56:37 SGT 2020
+base.0=C\:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex

@@ -1,48 +1,67 @@
 package com.example.lora.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lora.Model.TbPengguna;
 import com.example.lora.R;
 import com.example.lora.controller.SQLLiteHelper;
-import com.example.lora.dao.allMessage;
-import java.util.ArrayList;
+import com.example.lora.dao.*;
 
 import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
-public class MainMessage extends AppCompatActivity implements  View.OnClickListener{
+public class MainMessage extends AppCompatActivity implements View.OnClickListener {
 
     Button add;
 
     SQLiteDatabase db;
     SQLLiteHelper helper;
+    ImageButton btnPairing;
+
+    BluetoothAdapter bta;
+    public final static int REQUEST_ENABLE_BT = 1;
 
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<allMessage> listAllMessage;
+
+    private String deviceAddress;
 
     TbPengguna tbp;
-
-    String[] nama = {"Ardi","Dian","Andi","Irwan","Lia","Icha","Nita","Andri","Dandi","Nani"};
-    String[] number = {"1020892","21u3921","921829","892172","909018","9032121","0318922","92381290","2918021","2891082"};
-    String[] chat = {"90knsakjcnjw","diooadnas","dokadnsa","diosajd","dioasdna","dioasjda","dsaonda","diosad","diosada","dsdhabd"};
-    String[] date_time = {"dsajdka","djsadw","dionqo","diowej","oew0239","903dfjkwef","dowqdq","odiqjd","powqdj","9201809"};
+    TextView tvStatusPairing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_message);
 
+        if (getIntent().getExtras()!= null){
+            deviceAddress = getIntent().getStringExtra("device");
+            Log.i("Androssss",deviceAddress);
+        }
+
+        getSupportActionBar().hide();
+
         add = findViewById(R.id.btnTambahPesan);
         recyclerView = findViewById(R.id.listRecylerView);
+        btnPairing = findViewById(R.id.btnPairing);
+        tvStatusPairing = findViewById(R.id.tvStatusPairing);
+
+        bta = BluetoothAdapter.getDefaultAdapter();
+
+        checkingBluetooth();
 
         helper = new SQLLiteHelper(this);
         db = helper.getReadableDatabase();
@@ -52,22 +71,47 @@ public class MainMessage extends AppCompatActivity implements  View.OnClickListe
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        loadMessage();
+        if (bta.isEnabled() == true){
+            loadMessage();
+        }
 
+        btnPairing.setOnClickListener(this);
         add.setOnClickListener(this);
 
     }
 
-    void loadMessage(){
+    void loadMessage() {
         recyclerViewAdapter = new RecyclerViewAdapter(tbp.selectLastMessage(), this);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    private void checkingBluetooth() {
+        if (bta.isEnabled() == false) {
+            Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_ENABLE_BT){
+            loadMessage();
+        }else if (resultCode == RESULT_CANCELED && requestCode == REQUEST_ENABLE_BT){
+            checkingBluetooth();
+        }
+    }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnTambahPesan :
+        switch (v.getId()) {
+            case R.id.btnTambahPesan:
                 startActivity(new Intent(MainMessage.this, MainActivity.class));
+                finish();
+                break;
+            case R.id.btnPairing:
+//                Toast.makeText(this, "Menuju ke activity pairing", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainMessage.this, DeviceListPairing.class));
                 finish();
                 break;
         }

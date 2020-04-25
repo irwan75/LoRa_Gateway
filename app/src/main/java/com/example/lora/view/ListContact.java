@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,9 @@ public class ListContact extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(rvAdapterListContact);
 
+    }
+
+    private void setSupportActionBar(Toolbar toolbar) {
     }
 
     private void loadContact() {

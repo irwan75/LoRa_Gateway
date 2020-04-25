@@ -6,35 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".view.MainMessage">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listRecylerView"
+        <include layout="@layout/toolbar_connected"
+            android:id="@+id/toolbar_connected"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp" />
+            android:layout_below="@id/toolbar_connected"
+            >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listRecylerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp" />
 
-            <Button
-                android:id="@+id/btnTambahPesan"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/floating_button"
-                android:text="+"
-                android:textColor="@color/white"
-                android:textSize="35sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btnTambahPesan"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/floating_button"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="35sp" />
 
-    </FrameLayout>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

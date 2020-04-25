@@ -7,14 +7,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.text.style.BackgroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,13 +28,15 @@ import android.widget.Toast;
 import com.example.lora.Model.TbPengguna;
 import com.example.lora.R;
 import com.example.lora.controller.SQLLiteHelper;
+import com.example.lora.controller.bluetoothservice.SerialListener;
+import com.example.lora.controller.bluetoothservice.SerialService;
 import com.example.lora.recyleradapter.RVAdapterMessage;
 import com.example.lora.recyleradapter.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import com.example.lora.dao.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ServiceConnection, SerialListener {
 
     SQLLiteHelper helper;
     SQLiteDatabase db;
@@ -46,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ProgressDialog progressDialog;
 
+    private SerialService service;
+
+    private String deviceAddress;
+
     String nomor = null;
     String nama = null;
 //    TextView tvMessage;
@@ -56,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getIntent().getExtras()!= null){
+            deviceAddress = getIntent().getStringExtra("device");
+            Log.i("Androidddd",deviceAddress);
+        }
+
         etNumber = findViewById(R.id.etNumber);
         btnSend = findViewById(R.id.btnSend);
         btnBack = findViewById(R.id.btnBack);
@@ -129,6 +145,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder binder) {
+
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        service = null;
+    }
+
+    @Override
+    public void onSerialConnect() {
+
+    }
+
+    @Override
+    public void onSerialConnectError(Exception e) {
+
+    }
+
+    @Override
+    public void onSerialRead(byte[] data) {
+
+    }
+
+    @Override
+    public void onSerialIoError(Exception e) {
+
     }
 }
 

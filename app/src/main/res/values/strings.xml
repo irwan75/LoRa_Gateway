@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoRa</string>
+    <string name="app_name">LoRa Chatting</string>
     <string name="action_settings">Settings</string>
     <string name="btnContact">Contact</string>
     <string name="edNumber">Phone Number</string>
