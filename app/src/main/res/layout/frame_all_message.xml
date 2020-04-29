@@ -31,6 +31,7 @@
                 android:layout_below="@+id/tvNamaatauNomor"
                 android:text="Pesan anda disini "
                 android:textColor="@color/black"
+                android:maxLines="2"
                 android:textSize="15sp" />
 
             <TextView
