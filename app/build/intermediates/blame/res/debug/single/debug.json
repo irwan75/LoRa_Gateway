@@ -160,16 +160,16 @@
         "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
     },
     {
+        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_list_pairing_bluetooth.xml.flat",
+        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\layout\\dialog_list_pairing_bluetooth.xml"
+    },
+    {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_back.png.flat",
         "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_back.png"
     },
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_list_pairing_bluetooth.xml.flat",
-        "source": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\src\\main\\res\\layout\\dialog_list_pairing_bluetooth.xml"
     },
     {
         "merged": "C:\\Users\\irwan\\AndroidStudioProjects\\LoRa\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_bluetooth_connected_black_24dp.png.flat",

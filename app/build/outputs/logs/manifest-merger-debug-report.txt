@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\ef8a364a6a39421e69c96cf68eeb3e63\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\380cbbd0623e9b22e21961fc6ec82b14\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\4764869116b7944d884a78eb3b5d999f\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -27,20 +27,20 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\irwan\.gradle\ca
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\9c0d2720907bb8bd5d5976efee735314\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\d00c90699ae27cc1e1ce5e4b3e530617\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\13ac386f95e101744ae5f7d486caaa8c\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
 	package
 		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:3:5-31
 		INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
+		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
 		INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-31:12
+		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:1-32:12
 		INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:2:11-69
@@ -69,7 +69,7 @@ ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifes
 	android:name
 		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:10:22-74
 application
-ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:12:5-29:19
+ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:12:5-30:19
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\380cbbd0623e9b22e21961fc6ec82b14\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\380cbbd0623e9b22e21961fc6ec82b14\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [androidx.core:core:1.1.0] C:\Users\irwan\.gradle\caches\transforms-2\files-2.1\34b4ab0d8b65ac74ddd00d45b26dd963\core-1.1.0\AndroidManifest.xml:24:5-89
@@ -116,6 +116,12 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:26:17-77
 	android:name
 		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:26:27-74
+service#com.example.lora.controller.bluetoothservice.SerialService
+ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:29:9-100
+	android:enabled
+		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:29:76-98
+	android:name
+		ADDED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:29:18-75
 uses-sdk
 INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml

@@ -22,6 +22,9 @@
                 android:layout_height="wrap_content"
                 android:text="Nomor/Nama"
                 android:textColor="@color/black"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_toLeftOf="@+id/tvTanggaldanWaktu"
                 android:textSize="20sp" />
 
             <TextView
@@ -32,10 +35,12 @@
                 android:text="Pesan anda disini "
                 android:textColor="@color/black"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tvTanggaldanWaktu"
+                android:layout_marginLeft="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

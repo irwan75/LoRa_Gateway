@@ -9,6 +9,8 @@
         android:layout_margin="3dp"
         android:id="@+id/cvMessage"
         app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        android:elevation="0dp"
         >
 
         <RelativeLayout

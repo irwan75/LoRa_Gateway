@@ -6,10 +6,12 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.sqlite.SQLiteDatabase;
@@ -77,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MainActivity.this.bindService(new Intent(MainActivity.this, SerialService.class), this, Context.BIND_AUTO_CREATE);
+        Log.i("Android", "onCreate");
 
         etNumber = findViewById(R.id.etNumber);
         btnSend = findViewById(R.id.btnSend);
@@ -157,40 +162,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder binder) {
-        service = ((SerialService.SerialBinder) binder).getService();
-//        if(initialStart && isResumed()) {
-//            initialStart = false;
-            MainActivity.this.runOnUiThread(this::connect);
-//        }
-    }
-
-    //Bluetooth Send Service
-
-    private void connect() {
-        try {
-            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-            String deviceName = device.getName() != null ? device.getName() : device.getAddress();
-//            status("connecting...");
-            connected = Connected.Pending;
-            socket = new SerialSocket();
-            service.connect(this, "Connected to " + deviceName);
-            socket.connect(getApplicationContext(), service, device);
-        } catch (Exception e) {
-            onSerialConnectError(e);
-        }
-    }
-
-    private void disconnect() {
-        connected = Connected.False;
-        service.disconnect();
-        socket.disconnect();
-        socket = null;
-    }
-
     private void send(String str) {
+        Log.i("Android","method send");
         if(connected != Connected.True) {
             Toast.makeText(getApplicationContext(), "not connected", Toast.LENGTH_SHORT).show();
             return;
@@ -205,32 +178,128 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e) {
             onSerialIoError(e);
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Android","method onStart");
+        if(service != null)
+            service.attach(this);
+        else
+            MainActivity.this.startService(new Intent(MainActivity.this, SerialService.class));
+    }
+
+    @Override
+    protected void onStop() {
+        Log.i("Android","method onStop");
+        if(service != null && !MainActivity.this.isChangingConfigurations())
+            service.detach();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i("Android","method onDestroy");
+        if (connected != Connected.False)
+            disconnect();
+        MainActivity.this.stopService(new Intent(MainActivity.this, SerialService.class));
+        super.onDestroy();
+    }
+
+    private void disconnect() {
+        Log.i("Android","method disconnect");
+        connected = Connected.False;
+        service.disconnect();
+        socket.disconnect();
+        socket = null;
+
+    }
+
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        getActivity().bindService(new Intent(getActivity(), SerialService.class), this, Context.BIND_AUTO_CREATE);
+//    }
+
+//    @Override
+//    public void onDetach() {
+//        try { getActivity().unbindService(this); } catch(Exception ignored) {}
+//        super.onDetach();
+//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("Android","method onResume");
+        if(initialStart && service !=null) {
+            initialStart = false;
+            MainActivity.this.runOnUiThread(this::connect);
+        }
+    }
+
+    private void connect() {
+        Log.i("Android","method connect");
+        try {
+            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
+            String deviceName = device.getName() != null ? device.getName() : device.getAddress();
+//            status("connecting...");
+            connected = Connected.Pending;
+            socket = new SerialSocket();
+            service.connect(this, "Connected to " + deviceName);
+            socket.connect(getApplicationContext(), service, device);
+        } catch (Exception e) {
+            onSerialConnectError(e);
+        }
+    }
+
+    //Bluetooth Send Service
+
+//    private void receive(byte[] data) {
+//        receiveText.append(new String(data));
+//    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder binder) {
+        Log.i("Android","method onServiceConnected");
+        service = ((SerialService.SerialBinder) binder).getService();
+//        if(initialStart && false) {
+//            initialStart = false;
+            MainActivity.this.runOnUiThread(this::connect);
+//        }
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
+        Log.i("Android","method onServiceDisconnect");
         service = null;
     }
 
     @Override
     public void onSerialConnect() {
+        Log.i("Android","method onSerialConnect");
 //        status("connected");
         connected = Connected.True;
     }
 
     @Override
     public void onSerialConnectError(Exception e) {
+        Log.i("Android","method onSerialConnectError");
 //        status("connection failed: " + e.getMessage());
         disconnect();
     }
 
     @Override
     public void onSerialRead(byte[] data) {
-
+        Log.i("Android","method onSerialRead");
+//        receive(data);
     }
 
     @Override
     public void onSerialIoError(Exception e) {
+        Log.i("Android","method onSerialError");
 //        status("connection lost: " + e.getMessage());
         disconnect();
     }

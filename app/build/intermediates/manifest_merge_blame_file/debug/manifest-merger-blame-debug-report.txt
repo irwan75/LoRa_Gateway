@@ -30,7 +30,7 @@
 16-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:10:22-74
 17
 18    <application
-18-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:12:5-29:19
+18-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:12:5-30:19
 19        android:allowBackup="true"
 19-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:13:9-35
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -70,6 +70,13 @@
 35-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:26:27-74
 36            </intent-filter>
 37        </activity>
-38    </application>
-39
-40</manifest>
+38
+39        <service
+39-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:29:9-100
+40            android:name="com.example.lora.controller.bluetoothservice.SerialService"
+40-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:29:18-75
+41            android:enabled="true" />
+41-->C:\Users\irwan\AndroidStudioProjects\LoRa\app\src\main\AndroidManifest.xml:29:76-98
+42    </application>
+43
+44</manifest>
